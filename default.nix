@@ -12,6 +12,24 @@ let
     in
     lib.listToAttrs (map (name: { inherit name; value = f name; }) pnames);
 
+  withDefaults =
+    let
+      inherit (poetry2nix.defaultPoetryOverrides) overrideOverlay;
+      defaults = {
+        pre = final: prev: {
+          keras = null;
+          Keras = null;
+          keras_ = prev.keras;
+        };
+
+        post = final: prev: {
+          keras = prev.keras_;
+        };
+      };
+
+    in
+    exts: ((overrideOverlay defaults.pre).extend defaults.post).extend
+      (lib.composeManyExtensions exts);
 in
 
 poetry2nix.mkPoetryApplication {
@@ -19,9 +37,11 @@ poetry2nix.mkPoetryApplication {
   propagatedBuildInputs = [ diffusion-models ];
   dontUseWheelUnpack = true;
 
-  overrides = poetry2nix.overrides.withDefaults (withSetuptools [
-    "libclang"
-    "pyparsing"
-    "typing-extensions"
-  ]);
+  overrides = withDefaults [
+    (withSetuptools [
+      "libclang"
+      "pyparsing"
+      "typing-extensions"
+    ])
+  ];
 }
