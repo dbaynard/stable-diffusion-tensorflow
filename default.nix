@@ -14,12 +14,29 @@ let
     in
     lib.listToAttrs (map (name: { inherit name; value = f name; }) pnames);
 
+  withDefaults =
+    let
+      inherit (poetry2nix.defaultPoetryOverrides) overrideOverlay;
+      defaults = {
+        pre = final: prev: {
+          keras = null;
+          Keras = null;
+          keras_ = prev.keras;
+        };
+
+        post = final: prev: {
+          keras = prev.keras_;
+        };
+      };
+
+    in
+    ((overrideOverlay defaults.pre).extend defaults.post).extend;
 in
 
 poetry2nix.mkPoetryApplication {
   projectDir = ./.;
   propagatedBuildInputs = [ diffusion-models ];
-  overrides = poetry2nix.overrides.withDefaults (withSetuptools [
+  overrides = withDefaults (withSetuptools [
     "libclang"
     "pyparsing"
     "typing-extensions"
