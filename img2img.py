@@ -35,6 +35,12 @@ parser.add_argument(
     help="the output image filename",
 )
 
+parser.add_argument(
+    "--seed",
+    type=int,
+    help="optionally specify a seed integer for reproducible results",
+)
+
 args = parser.parse_args()
 
 generator = StableDiffusion(
@@ -49,6 +55,7 @@ img = generator.generate(
     unconditional_guidance_scale=7.5,
     temperature=1,
     batch_size=1,
+    seed=args.seed,
     input_image=args.input,
     input_image_strength=0.8
 )
