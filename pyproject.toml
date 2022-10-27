@@ -9,6 +9,7 @@ packages = [{include = "stable_diffusion_tf"}]
 [tool.poetry.scripts]
 text2image = "text2image.py:main"
 img2img = "img2img.py:main"
+n_text2image = "n_text2image.py:main"
 
 [tool.poetry.dependencies]
 python = "^3.10"
