@@ -6,6 +6,10 @@ authors = ["David Baynard <git@baynard.dev>"]
 readme = "README.md"
 packages = [{include = "stable_diffusion_tf"}]
 
+[tool.poetry.scripts]
+text2image = "text2image.py:main"
+img2img = "img2img.py:main"
+
 [tool.poetry.dependencies]
 python = "^3.10"
 tensorflow-macos = "2.10.0"
