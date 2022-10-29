@@ -36,6 +36,7 @@ in
 poetry2nix.mkPoetryApplication {
   projectDir = ./.;
   propagatedBuildInputs = [ diffusion-models ];
+  dontUseWheelUnpack = true;
   overrides = withDefaults (withSetuptools [
     "libclang"
     "pyparsing"
