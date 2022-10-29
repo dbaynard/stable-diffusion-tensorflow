@@ -37,6 +37,11 @@ poetry2nix.mkPoetryApplication {
   propagatedBuildInputs = [ diffusion-models ];
   dontUseWheelUnpack = true;
 
+  diffusion_models = diffusion-models;
+  prePatch = ''
+    substituteAllInPlace stable_diffusion_tf/stable_diffusion.py
+  '';
+
   overrides = withDefaults [
     (withSetuptools [
       "libclang"
