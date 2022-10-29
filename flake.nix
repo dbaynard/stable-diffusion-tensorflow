@@ -16,5 +16,11 @@
       };
 
       devShells.${system}.default = self.packages.${system}.default.dependencyEnv;
+
+      apps.${system} = let pkgs = self.packages.${system}; in {
+        img2img = { type = "app"; program = pkgs.default + "/bin/img2img"; };
+        n_text2image = { type = "app"; program = pkgs.default + "/bin/n_text2image"; };
+        text2image = { type = "app"; program = pkgs.default + "/bin/text2image"; };
+      };
     };
 }
