@@ -6,4 +6,5 @@
 poetry2nix.mkPoetryApplication {
   projectDir = ./.;
   propagatedBuildInputs = [ diffusion-models ];
+  dontUseWheelUnpack = true;
 }
