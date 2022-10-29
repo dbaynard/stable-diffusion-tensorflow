@@ -65,14 +65,20 @@ if args.mp:
     print("Using mixed precision.")
     keras.mixed_precision.set_global_policy("mixed_float16")
 
-generator = StableDiffusion(img_height=args.H, img_width=args.W, jit_compile=False)
-img = generator.generate(
-    args.prompt,
-    num_steps=args.steps,
-    unconditional_guidance_scale=args.scale,
-    temperature=1,
-    batch_size=1,
-    seed=args.seed,
-)
-Image.fromarray(img[0]).save(args.output)
-print(f"saved at {args.output}")
+
+def main():
+    generator = StableDiffusion(img_height=args.H, img_width=args.W, jit_compile=False)
+    img = generator.generate(
+        args.prompt,
+        num_steps=args.steps,
+        unconditional_guidance_scale=args.scale,
+        temperature=1,
+        batch_size=1,
+        seed=args.seed,
+    )
+    Image.fromarray(img[0]).save(args.output)
+    print(f"saved at {args.output}")
+
+
+if __name__ == '__main__':
+    main()

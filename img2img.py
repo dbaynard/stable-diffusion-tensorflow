@@ -43,20 +43,26 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-generator = StableDiffusion(
-    img_height=512,
-    img_width=512,
-    jit_compile=False,  # You can try True as well (different performance profile)
-)
 
-img = generator.generate(
-    args.prompt,
-    num_steps=args.steps,
-    unconditional_guidance_scale=7.5,
-    temperature=1,
-    batch_size=1,
-    seed=args.seed,
-    input_image=args.input,
-    input_image_strength=0.8
-)
-Image.fromarray(img[0]).save(args.output)
+def main():
+    generator = StableDiffusion(
+        img_height=512,
+        img_width=512,
+        jit_compile=False,  # You can try True as well (different performance profile)
+    )
+
+    img = generator.generate(
+        args.prompt,
+        num_steps=args.steps,
+        unconditional_guidance_scale=7.5,
+        temperature=1,
+        batch_size=1,
+        seed=args.seed,
+        input_image=args.input,
+        input_image_strength=0.8,
+    )
+    Image.fromarray(img[0]).save(args.output)
+
+
+if __name__ == '__main__':
+    main()
