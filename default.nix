@@ -33,7 +33,11 @@ let
 in
 
 poetry2nix.mkPoetryApplication {
-  projectDir = ./.;
+  projectDir = lib.cleanSourceWith {
+    src = ./.;
+    filter = path: type:
+      type == "directory" || builtins.match ".+\.nix" path == null;
+  };
   propagatedBuildInputs = [ diffusion-models ];
   dontUseWheelUnpack = true;
 
