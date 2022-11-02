@@ -15,7 +15,9 @@
         };
       };
 
-      devShells.${system}.default = self.packages.${system}.default.dependencyEnv;
+      devShells.${system}.default = pkgs.callPackage ./shell.nix {
+        inherit (self.packages.${system}) default;
+      };
 
       apps.${system} = let pkgs = self.packages.${system}; in {
         img2img = { type = "app"; program = pkgs.default + "/bin/img2img"; };
