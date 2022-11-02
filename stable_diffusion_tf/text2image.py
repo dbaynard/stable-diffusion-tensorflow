@@ -14,7 +14,14 @@ class Run(NamedTuple):
         return cls(**{**run, "output": Path(run['output'])})
 
 
-def text2image(runs: list[Run], args):
+class Args(NamedTuple):
+    H: int = 512
+    W: int = 512
+    scale: float = 7.5
+    steps: int = 50
+
+
+def text2image(runs: list[Run], args=Args()):
     from tensorflow import keras
     from .stable_diffusion import StableDiffusion
     from PIL import Image
