@@ -43,5 +43,12 @@ poetry2nix.mkPoetryApplication {
       "pyparsing"
       "typing-extensions"
     ])
+    (final: prev: {
+      tensorflow-macos = prev.tensorflow-macos.overridePythonAttrs (old: {
+        postInstall = old.postInstall or "" + ''
+          rm $out/bin/tensorboard
+        '';
+      });
+    })
   ];
 }
