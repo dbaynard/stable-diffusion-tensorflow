@@ -53,6 +53,9 @@ poetry2nix.mkPoetryApplication {
       "typing-extensions"
     ])
     (final: prev: {
+      stable-diffusion-weights = prev.stable-diffusion-weights.overridePythonAttrs (old: {
+        dontUseWheelUnpack = true;
+      });
       tensorflow-macos = prev.tensorflow-macos.overridePythonAttrs (old: {
         postInstall = old.postInstall or "" + ''
           rm $out/bin/tensorboard
