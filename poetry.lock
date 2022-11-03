@@ -382,6 +382,22 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
+name = "stable-diffusion-weights"
+version = "0.1.0"
+description = "Stable diffusion weights"
+category = "main"
+optional = false
+python-versions = "^3.10"
+develop = false
+
+[package.dependencies]
+tensorflow-macos = "2.10.0"
+
+[package.source]
+type = "directory"
+url = "stable_diffusion_weights"
+
+[[package]]
 name = "tensorboard"
 version = "2.10.1"
 description = "TensorBoard lets you watch Tensors Flow"
@@ -593,7 +609,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "0f0b51e4202cc116032a7e0557e6784451f3076502cc61676753d6ca38d53a86"
+content-hash = "76fabb1f1bfe7068c036db05a3d1b4698dd9b96b8b4a79c834d7b5f6aeffbe0e"
 
 [metadata.files]
 absl-py = [
@@ -1054,6 +1070,7 @@ six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
     {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
 ]
+stable-diffusion-weights = []
 tensorboard = [
     {file = "tensorboard-2.10.1-py3-none-any.whl", hash = "sha256:fb9222c1750e2fa35ef170d998a1e229f626eeced3004494a8849c88c15d8c1c"},
 ]
