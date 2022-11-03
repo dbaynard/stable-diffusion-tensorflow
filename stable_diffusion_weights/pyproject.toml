@@ -1,0 +1,13 @@
+[tool.poetry]
+name = "stable-diffusion-weights"
+version = "0.1.0"
+description = "Stable diffusion weights"
+authors = ["David Baynard <git@baynard.dev>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+tensorflow-macos = "2.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
