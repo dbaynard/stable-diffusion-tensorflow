@@ -43,7 +43,7 @@ poetry2nix.mkPoetryApplication {
 
   diffusion_models = diffusion-models;
   prePatch = ''
-    substituteAllInPlace stable_diffusion_tf/stable_diffusion.py
+    substituteAllInPlace stable_diffusion_weights/__init__.py
   '';
 
   overrides = withDefaults [

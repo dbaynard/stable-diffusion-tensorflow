@@ -22,6 +22,7 @@ tqdm = "4.64.1"
 protobuf = "3.19"
 ftfy = "6.1.1"
 regex = "2022.9.13"
+stable-diffusion-weights = { path = "./stable_diffusion_weights/", develop = false }
 
 [build-system]
 requires = ["poetry-core"]
