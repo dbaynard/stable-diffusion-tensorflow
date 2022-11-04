@@ -21,7 +21,7 @@ class Args(NamedTuple):
     steps: int = 50
 
 
-def text2image(runs: list[Run], args=Args()):
+def create(runs: list[Run], args=Args()):
     from tensorflow import keras
     from .stable_diffusion import StableDiffusion
     from PIL import Image

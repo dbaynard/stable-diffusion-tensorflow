@@ -3,7 +3,7 @@ from json import loads
 from sys import stdin, exit
 
 
-from stable_diffusion_tf.text2image import Run, text2image
+from stable_diffusion_tf.create import Run, create
 
 
 parser = argparse.ArgumentParser(
@@ -42,7 +42,7 @@ def main():
     runs = [Run.from_json(run) for run in loads(stdin.read())]
 
     if runs:
-        text2image(runs, args)
+        create(runs, args)
     else:
         print("No runs")
 
