@@ -3,7 +3,7 @@ from json import loads
 from sys import stdin, exit
 
 
-from stable_diffusion_tf.create import Run, create
+from stable_diffusion_tf.create import from_json, create
 
 
 parser = argparse.ArgumentParser(
@@ -39,7 +39,7 @@ parser.add_argument(
 def main():
     args = parser.parse_args()
 
-    runs = [Run.from_json(run) for run in loads(stdin.read())]
+    runs = [from_json(run) for run in loads(stdin.read())]
 
     if runs:
         create(runs, args)

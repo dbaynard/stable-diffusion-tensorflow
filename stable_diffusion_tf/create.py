@@ -2,8 +2,8 @@ from pathlib import Path
 from typing import NamedTuple
 
 
-class Run(NamedTuple):
-    """A single run of stable diffusion"""
+class Text2Img(NamedTuple):
+    """A single run of stable diffusion text2img"""
 
     prompt: str
     output: Path
@@ -12,6 +12,13 @@ class Run(NamedTuple):
     @classmethod
     def from_json(cls, run: str):
         return cls(**{**run, "output": Path(run['output'])})
+
+
+Run = Text2Img
+
+
+def from_json(run: str):
+    return Text2Img.from_json(run)
 
 
 class Args(NamedTuple):
